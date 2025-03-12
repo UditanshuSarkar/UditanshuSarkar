@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            margin: 0;
+            padding: 0;
+            color: #fff;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #1c1c1c;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+            border-bottom: 4px solid #0056b3;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.8rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        /* Main Container */
+        .container {
+            width: 85%;
+            max-width: 1100px;
+            margin: 40px auto;
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+            color: #333;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .container:hover {
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Welcome Section */
+        .welcome-message {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .welcome-message h3 {
+            font-size: 2rem;
+            color: #333;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        /* File Upload Section */
+        .file-upload-form {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            align-items: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            animation: fadeIn 1s ease;
+        }
+
+        .file-upload-form input[type="file"] {
+            padding: 14px;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 8px;
+            background-color: #f0f2f5;
+            width: 250px;
+            color: #333;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .file-upload-form input[type="file"]:hover {
+            background-color: #e9ecef;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .file-upload-form input[type="submit"] {
+            padding: 14px 30px;
+            font-size: 1.1rem;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .file-upload-form input[type="submit"]:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+
+        /* File List */
+        .file-list-container {
+            margin-top: 30px;
+        }
+
+        .file-list-container h3 {
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            color: #333;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .file-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .file-list li {
+            padding: 20px;
+            background-color: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            transition: box-shadow 0.3s ease, transform 0.3s ease;
+        }
+
+        .file-list li:hover {
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+            transform: translateY(-5px);
+        }
+
+        .file-list li a {
+            color: #007bff;
+            font-size: 1.2rem;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .file-list li a:hover {
+            color: #0056b3;
+            text-decoration: underline;
+        }
+
+        /* Logout Link */
+        .logout-link {
+            display: block;
+            text-align: center;
+            margin-top: 40px;
+            padding: 14px 0;
+            background-color: #f44336;
+            color: white;
+            border-radius: 8px;
+            width: 160px;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            margin-bottom: 20px;
+        }
+
+        .logout-link:hover {
+            background-color: #e53935;
+            transform: scale(1.05);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #343a40;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            font-size: 1rem;
+            margin-top: 60px;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Media Queries for Mobile Responsiveness */
+        @media screen and (max-width: 768px) {
+            .container {
+                width: 90%;
+                padding: 20px;
+            }
+
+            header h1 {
+                font-size: 2rem;
+            }
+
+            .file-upload-form {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .file-upload-form input[type="file"] {
+                width: 100%;
+            }
+
+            .file-upload-form input[type="submit"] {
+                width: 100%;
+            }
+
+            .file-list-container h3 {
+                font-size: 1.5rem;
+            }
+
+            .file-list li {
+                font-size: 1rem;
+                padding: 14px;
+            }
+
+            .logout-link {
+                width: 100%;
+                font-size: 1rem;
+            }
+
+            footer {
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Mobile-first Media Query for smaller screens */
+        @media screen and (max-width: 480px) {
+            header h1 {
+                font-size: 1.8rem;
+            }
+
+            .welcome-message h3 {
+                font-size: 1.5rem;
+            }
+
+            .file-upload-form input[type="file"], .file-upload-form input[type="submit"] {
+                width: 100%;
+                padding: 12px;
+                font-size: 1rem;
+            }
+
+            .file-list li {
+                font-size: 0.9rem;
+                padding: 12px;
+            }
+
+            footer {
+                font-size: 0.8rem;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header>
+        <h1>Welcome, {{ session['username'] }}</h1>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+
+        <!-- Welcome Message -->
+        <div class="welcome-message">
+            <h3>Upload Your Python Files</h3>
+        </div>
+
+        <!-- File Upload Form -->
+        <form method="POST" enctype="multipart/form-data" class="file-upload-form">
+            <input type="file" name="file" required>
+            <input type="submit" value="Upload">
+        </form>
+
+        <!-- File List -->
+        <div class="file-list-container">
+            <h3>Your Files</h3>
+            <ul class="file-list">
+                {% for file in files %}
+                <li>
+                    {{ file }} 
+                    <a href="/run/{{ file }}">Run</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+    </div>
+
+    <!-- Logout Link -->
+    <a href="/logout" class="logout-link">Logout</a>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 UDITANSHU SARKAR HOSTING. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
